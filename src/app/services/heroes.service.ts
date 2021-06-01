@@ -1,20 +1,43 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import Heroes from './../../assets/heores.json';
+import { Heroe } from '../model/heroe';
+import HeroesJSON from './../../assets/heores.json'
+
+const HEROES: Heroe[] = HeroesJSON.heroes;
 
 @Injectable({
   providedIn: 'root'
 })
 export class HeroesService {
 
-  url = './../../assets/heores.json'
+  constructor() { }
 
-  constructor(private http: HttpClient) { }
+  public getHeroes(): Heroe[] {
+    console.log(HEROES);
+    console.log(HEROES.length);
+    return HEROES;
+  }
 
-  public getHeroes(): Observable<any> {
-    console.log(this.url);
-    return this.http.get(`${this.url}`);
+  public getHeroByName(name: string) {
+
+  }
+
+  public addHero() {
+
+  }
+
+  public editHero() {
+
+  }
+
+  public removeHero(heroID: number) {
+    HEROES.forEach(
+      (heroe: Heroe, index: number) => {
+        if (heroe.id === heroID) {
+          HEROES.splice(index, 1);
+          console.log('BORRADO');
+        }
+      }
+    );
   }
 
 }

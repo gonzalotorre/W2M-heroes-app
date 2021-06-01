@@ -1,15 +1,32 @@
 /* You can add global styles to this file, and also import other style files */
 
-html,
-body {
-    height: 100%;
-}
-
 body {
     margin: 0;
     font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
+table {
+    width: 100%;
+}
+
+th.mat-sort-header-sorted {
+    color: black;
+}
+
+.add-hero-button {
+    margin-top: 1.5rem;
+}
+
 .container {
     margin: 2rem;
+    margin-left: 10rem;
+    margin-right: 10rem;
+}
+
+.heroes-table {
+    margin-top: 2rem;
+}
+
+.table-options {
+    text-align: center !important;
 }

@@ -1,8 +1,8 @@
 export class Heroe {
 
-    id: string;
-    nombre: string;
-    poder: string;
+    id: number;
+    name: string;
+    power: string;
 
     constructor() {}
 
