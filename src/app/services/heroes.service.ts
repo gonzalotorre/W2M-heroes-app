@@ -43,7 +43,7 @@ export class HeroesService {
    * @param nameFilter cadena que por la que se busca para obtener el heroe.
    */
   public getHeroByNameFilter(nameFilter: string): Heroe[] {
-    return HEROES.filter(heroe => heroe.name.includes(nameFilter));
+    return HEROES.filter(heroe => heroe.name.toUpperCase().includes(nameFilter.toUpperCase()));
   }
 
   /**

@@ -8,7 +8,7 @@
         <form class="search-form">
             <mat-form-field class="input-search-form">
                 <mat-label>Nombre de héroe</mat-label>
-                <input matInput placeholder="Introduce el nombre de un héroe" (input)="searchByName($event)">
+                <input matInput placeholder="Introduce el nombre de un héroe" name="heroNameFilter" [(ngModel)]="nameFilter" (input)="nameFilter = nameFilter.toUpperCase()" (ngModelChange)="searchByName()">
             </mat-form-field>
         </form>
     </div>

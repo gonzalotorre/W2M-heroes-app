@@ -44,17 +44,22 @@ export class HeroesComponent implements OnInit, AfterViewInit {
     this.initializaTable();
   }
 
-  searchByName(event: any) {
-    this.nameFilter += event.data;
-    if (!event.data) {
-      this.nameFilter = '';
-    }
+  /**
+   * Metodo que busca en la lista de heroes la cadena que se escriba en el input. Cuando se escribe se llama
+   * al evento ngModelChange para detectar cambios en el input, el onchange hace la llamada a este metodo el cual
+   * se encarga de llamar al metodo del servicio que busca los heroes con la cadena que se pasa por parametros.
+   * Para esto se usa la directiva ngModel del campo nameFilter definido en la clase.
+   */
+  searchByName() {
+    this.heroes = this.heroesService.getHeroByNameFilter(this.nameFilter);
+    // Reiniciar la tabla cada vez que se busque por una cadena determinada.
+    this.initializaTable();
   }
 
   /**
    * Eliminar un heroe de la lista, cuando se hace click sobre el icono en la tabla, mediante la dependencia agregada
    * de SweetAlert2, nos saldrá una ventana modal que nos preguntará si queremos eliminar el registro. En caso de darle
-   * al botón de aceptar, se eliminará.z
+   * al botón de aceptar, se eliminará.
    */
   removeHero(heroID: number) {
     // Mostrar modal de alerta cuando se va a borrar un registro.
@@ -65,8 +70,10 @@ export class HeroesComponent implements OnInit, AfterViewInit {
       confirmButtonText: 'Eliminar'
     }).then((result) => {
       if (result.isConfirmed) {
+        // Eliminar el heroe y actualizar la lista.
         this.heroesService.removeHero(heroID);
-        this.getHeroes();
+        // this.getHeroes();
+        this.initializaTable();
       }
     });
   }
