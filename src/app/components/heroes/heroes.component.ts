@@ -16,10 +16,12 @@ export class HeroesComponent implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  heroes: any[] = [];
-
   displayedColumns: string[];
   dataSource: MatTableDataSource<Heroe>;
+
+  heroes: any[] = [];
+
+  nameFilter = '';
 
   constructor(
     private heroesService: HeroesService
@@ -30,19 +32,23 @@ export class HeroesComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    // Asignar la ordenacion a la tabla.
-    this.dataSource.sort = this.sort;
-    // Asignar la paginacion a la tabla.
-    this.dataSource.paginator = this.paginator;
+    this.AssignSortingAndPagging();
   }
 
   /**
-   * Obtener los heroes a traves del servicio. 
+   * Obtener los heroes a traves del servicio.
    * Cuando se obtiene la respuesta, se asigna a la lista de heroes y se inicializa la tabla con ellos.
    */
   private getHeroes() {
     this.heroes = this.heroesService.getHeroes();
     this.initializaTable();
+  }
+
+  searchByName(event: any) {
+    this.nameFilter += event.data;
+    if (!event.data) {
+      this.nameFilter = '';
+    }
   }
 
   /**
@@ -74,6 +80,16 @@ export class HeroesComponent implements OnInit, AfterViewInit {
     this.displayedColumns  = ['id', 'name', 'power', 'options'];
     // Inicializar la tabla con la lista de heroes que devuelve la peticion.
     this.dataSource = new MatTableDataSource<Heroe>(this.heroes);
+    this.AssignSortingAndPagging();
   }
 
+  /**
+   * Asignar la paginacion y la ordenacion a la tabla.
+   */
+  private AssignSortingAndPagging() {
+    // Asignar la ordenacion a la tabla.
+    this.dataSource.sort = this.sort;
+    // Asignar la paginacion a la tabla.
+    this.dataSource.paginator = this.paginator;
+  }
 }

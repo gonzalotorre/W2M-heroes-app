@@ -1,10 +1,16 @@
 <div class="container">
-    <h1>Listado de Héroes</h1>
+    <h1>Listado de héroes</h1>
     <hr>
-    <div class="add-hero-button">
+    <div class="header">
         <a [routerLink]="['/heroesForm']" mat-raised-button color="primary">
             <mat-icon>add</mat-icon><span class="material-icons-outlined"> Añadir</span>
         </a>
+        <form class="search-form">
+            <mat-form-field class="input-search-form">
+                <mat-label>Nombre de héroe</mat-label>
+                <input matInput placeholder="Introduce el nombre de un héroe" (input)="searchByName($event)">
+            </mat-form-field>
+        </form>
     </div>
     <div class="mat-elevation-z8 heroes-table">
         <table mat-table [dataSource]="dataSource" matSort>
@@ -30,7 +36,7 @@
             <ng-container matColumnDef="options">
                 <th class="table-options" mat-header-cell *matHeaderCellDef> Opciones </th>
                 <td class="table-options" mat-cell *matCellDef="let hero">
-                    <a [routerLink]="['/heroesForm', hero.id]" mat-icon-button color="primary" aria-label="Example icon button with a home icon">
+                    <a class="table-option-edit" [routerLink]="['/heroesForm', hero.id]" mat-icon-button color="primary" aria-label="Example icon button with a home icon">
                         <mat-icon>edit</mat-icon>
                     </a>
                     <a type="button" mat-icon-button color="warn" aria-label="Example icon button with a home icon" (click)="removeHero(hero.id)">
@@ -43,6 +49,6 @@
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
         </table>
 
-        <mat-paginator [pageSizeOptions]="[25, 50, 100]" showFirstLastButtons></mat-paginator>
+        <mat-paginator [pageSizeOptions]="[15, 50, 100]" showFirstLastButtons></mat-paginator>
     </div>
 </div>

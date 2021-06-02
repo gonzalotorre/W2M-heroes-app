@@ -1,1 +1,20 @@
-<p>heroes-form works!</p>
+<div class="container">
+    <a [routerLink]="['/heroes']" mat-icon-button aria-label="Example icon button with a home icon">
+        <mat-icon>arrow_back</mat-icon>
+    </a>
+    <h1 *ngIf="!heroeID">Añadir un nuevo héroe</h1>
+    <h1 *ngIf="heroeID">Editar héroe</h1>
+    <hr>
+    <form class="heroes-form" (ngSubmit)="onSubmit()">
+        <mat-form-field class="input-form" appearance="fill">
+            <mat-label>Nombre</mat-label>
+            <input matInput [(ngModel)]="heroe.name" name="heroeName" placeholder="Nombre del heroe">
+        </mat-form-field>
+        <mat-form-field class="input-form" appearance="fill">
+            <mat-label>Poder</mat-label>
+            <input matInput [(ngModel)]="heroe.power" name="heroePower" placeholder="Poder del heroe">
+        </mat-form-field>
+        <button mat-raised-button color="primary">Guardar</button>
+        <button mat-raised-button (click)="discardChanges()">Cancelar</button>
+    </form>
+</div>
