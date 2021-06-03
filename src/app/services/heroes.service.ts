@@ -43,7 +43,7 @@ export class HeroesService {
    * y devolver una lista con los heroes que contengan la cadena que se pasa por parametro.
    * @param nameFilter cadena que por la que se busca para obtener el heroe.
    */
-  public getHeroByNameFilter(nameFilter: string): Heroe[] {
+  public getHeroesByNameFilter(nameFilter: string): Heroe[] {
     return HEROES.filter(heroe => heroe.name.toUpperCase().includes(nameFilter.toUpperCase()));
   }
 
@@ -51,10 +51,11 @@ export class HeroesService {
    * Añadir un heroe a la lista.
    * Se le asigna el id que es el tamaño de la lista mas uno y se añade a la lista de heroes.
    * En el caso de haber una API se usaria HttpClient para hacer la llamada post a la API.
+   * Al id se le suman 2 ya que la longitud de la lista empieza en 0 mientras que los ids en el JSON empiezan en 1.
    * @param hero heroe que se va a añadir a la lista.
    */
   public addHero(hero: Heroe) {
-    hero.id = HEROES.length + 1;
+    hero.id = HEROES.length + 2;
     HEROES.push(hero);
   }
 

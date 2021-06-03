@@ -19,12 +19,12 @@ export class HeroesComponent implements OnInit, AfterViewInit {
   displayedColumns: string[];
   dataSource: MatTableDataSource<Heroe>;
 
-  heroes: any[] = [];
+  heroes: Heroe[] = [];
 
   nameFilter = '';
 
   constructor(
-    private heroesService: HeroesService
+    public heroesService: HeroesService
   ) { }
 
   ngOnInit(): void {
@@ -39,7 +39,7 @@ export class HeroesComponent implements OnInit, AfterViewInit {
    * Obtener los heroes a traves del servicio.
    * Cuando se obtiene la respuesta, se asigna a la lista de heroes y se inicializa la tabla con ellos.
    */
-  private getHeroes() {
+  public getHeroes() {
     this.heroes = this.heroesService.getHeroes();
     this.initializaTable();
   }
@@ -51,7 +51,7 @@ export class HeroesComponent implements OnInit, AfterViewInit {
    * Para esto se usa la directiva ngModel del campo nameFilter definido en la clase.
    */
   searchByName() {
-    this.heroes = this.heroesService.getHeroByNameFilter(this.nameFilter);
+    this.heroes = this.heroesService.getHeroesByNameFilter(this.nameFilter);
     // Reiniciar la tabla cada vez que se busque por una cadena determinada.
     this.initializaTable();
   }

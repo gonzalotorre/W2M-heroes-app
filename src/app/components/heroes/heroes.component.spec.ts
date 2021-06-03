@@ -22,4 +22,14 @@ describe('HeroesComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should have a list of Heroes', () => {
+    expect(component.heroes).toBeTruthy();
+  });
+
+  it('should return a list of heroes', () => {
+    const heroes = component.getHeroes();
+    expect(component.getHeroes()).toEqual(heroes);
+  });
+
 });

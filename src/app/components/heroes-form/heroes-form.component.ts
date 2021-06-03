@@ -11,7 +11,7 @@ import { Heroe } from 'src/app/model/heroe';
 })
 export class HeroesFormComponent implements OnInit {
 
-  herosForm: FormGroup;
+  heroesForm: FormGroup;
 
   heroe: Heroe = new Heroe();
 
@@ -52,13 +52,12 @@ export class HeroesFormComponent implements OnInit {
    * o crear un heroe. Una vez realizada la llamada al metodo correspondiente se redirige al listado de heroes.
    */
   onSubmit() {
-    if (this.herosForm.valid) {
+    if (this.heroesForm.valid) {
       if (this.heroeID) {
-        this.assignHeroEditValues();
+        this.assignHeroValues();
         this.heroesService.editHero(this.heroe);
       } else {
-        this.heroe = this.herosForm.value;
-        console.log(this.heroe);
+        this.assignHeroValues();
         this.heroesService.addHero(this.heroe);
       }
       this.router.navigateByUrl('/heroes');
@@ -71,9 +70,23 @@ export class HeroesFormComponent implements OnInit {
    * formulario con el modelo y no perder el id del heroe. Otra opcion seria incluir el id del heroe en el
    * formulario.
    */
-  assignHeroEditValues() {
-    this.heroe.name = this.herosForm.value.name;
-    this.heroe.power = this.herosForm.value.power;
+  assignHeroValues() {
+    this.heroe.name = this.capitalizeNameHeroe(this.heroesForm.value.name);
+    this.heroe.power = this.heroesForm.value.power;
+  }
+
+  /**
+   * Metodo para capitalizar el nombre del heroe, es decir, poner la primera letra en mayuscula.
+   * @param heroName nombre del heroe que se va a capitalizar.
+   * @returns el nombre del heroe capitalizado.
+   */
+  capitalizeNameHeroe(heroName: string): string {
+    heroName = heroName.toLowerCase();
+    let nombres = heroName.split(' ');
+    nombres = nombres.map( nombre => {
+      return nombre[0].toUpperCase() + nombre.substr(1);
+    });
+    return nombres.join(' ');
   }
 
   /**
@@ -81,7 +94,7 @@ export class HeroesFormComponent implements OnInit {
    * reactivos de angular.
    */
   createForm() {
-    this.herosForm = this.formBuilder.group({
+    this.heroesForm = this.formBuilder.group({
       name: [null, [Validators.required, Validators.minLength(3)]],
       power: [null, [Validators.required, Validators.minLength(3)]]
     });
@@ -91,7 +104,7 @@ export class HeroesFormComponent implements OnInit {
    * Metodo que inicializa el formulario con los valores del heroe que se quiere editar.
    */
   loadForm() {
-    this.herosForm.reset({
+    this.heroesForm.reset({
       name: this.heroe.name.toUpperCase(),
       power: this.heroe.power
     });

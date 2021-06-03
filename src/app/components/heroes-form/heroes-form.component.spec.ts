@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { Heroe } from 'src/app/model/heroe';
 
 import { HeroesFormComponent } from './heroes-form.component';
 
@@ -19,7 +20,4 @@ describe('HeroesFormComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
 });

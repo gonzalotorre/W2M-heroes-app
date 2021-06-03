@@ -1,7 +1,7 @@
 {
     "heroes": [{
             "id": 1,
-            "name": "Anti-Mage",
+            "name": "Anti Mage",
             "power": "antimage"
         },
         {

@@ -9,18 +9,18 @@
     </div>
     <hr>
 
-    <form class="heroes-form" [formGroup]="herosForm" (submit)="onSubmit()">
+    <form class="heroes-form" [formGroup]="heroesForm" (ngSubmit)="onSubmit()">
         <mat-form-field class="input-form" appearance="fill">
-            <mat-label>Nombre<small *ngIf="herosForm.get('name')?.hasError('required')"> *</small></mat-label>
+            <mat-label>Nombre<small *ngIf="heroesForm.get('name')?.hasError('required')"> *</small></mat-label>
             <input matInput formControlName="name" placeholder="Nombre del heroe" appUppercase>
         </mat-form-field>
-        <small class="error-message" *ngIf="herosForm.get('name')?.hasError('minlength')">El nombre debe de tener al menos 3 caracteres.</small>
+        <small class="error-message" *ngIf="heroesForm.get('name')?.hasError('minlength')">El nombre debe de tener al menos 3 caracteres.</small>
 
         <mat-form-field class="input-form" appearance="fill">
-            <mat-label>Poder<small *ngIf="herosForm.get('power')?.hasError('required')"> *</small></mat-label>
+            <mat-label>Poder<small *ngIf="heroesForm.get('power')?.hasError('required')"> *</small></mat-label>
             <input matInput formControlName="power" placeholder="Poder del heroe">
         </mat-form-field>
-        <small class="error-message" *ngIf="herosForm.get('power')?.hasError('minlength')">El poder debe de tener al menos 3 caracteres.</small>
+        <small class="error-message" *ngIf="heroesForm.get('power')?.hasError('minlength')">El poder debe de tener al menos 3 caracteres.</small>
 
         <button type="submit" class="form-buttons" mat-raised-button color="primary" (click)="onSubmit()">Guardar</button>
         <button type="button" [routerLink]="['/heroes']" mat-raised-button>Cancelar</button>
