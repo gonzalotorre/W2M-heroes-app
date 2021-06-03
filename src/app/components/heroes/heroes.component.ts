@@ -1,9 +1,9 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { MatTableDataSource } from '@angular/material/table';
-import { Heroe } from 'src/app/model/heroe';
 import { HeroesService } from '../../services/heroes.service';
+import { Heroe } from 'src/app/model/heroe';
 import Swal from 'sweetalert2';
 
 @Component({

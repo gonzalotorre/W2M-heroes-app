@@ -2,19 +2,28 @@
     <a [routerLink]="['/heroes']" mat-icon-button aria-label="Example icon button with a home icon">
         <mat-icon>arrow_back</mat-icon>
     </a>
-    <h1 *ngIf="!heroeID">Añadir un nuevo héroe</h1>
-    <h1 *ngIf="heroeID">Editar héroe</h1>
+
+    <div class="title-page-form">
+        <h1 *ngIf="!heroeID">Añadir un nuevo héroe</h1>
+        <h1 *ngIf="heroeID">Editar héroe</h1>
+    </div>
     <hr>
-    <form class="heroes-form" (ngSubmit)="onSubmit()">
+
+    <form class="heroes-form" [formGroup]="herosForm" (submit)="onSubmit()">
         <mat-form-field class="input-form" appearance="fill">
-            <mat-label>Nombre</mat-label>
-            <input matInput [(ngModel)]="heroe.name" name="heroeName" placeholder="Nombre del heroe">
+            <mat-label>Nombre<small *ngIf="herosForm.get('name')?.hasError('required')"> *</small></mat-label>
+            <input matInput formControlName="name" placeholder="Nombre del heroe" appUppercase>
         </mat-form-field>
+        <small class="error-message" *ngIf="herosForm.get('name')?.hasError('minlength')">El nombre debe de tener al menos 3 caracteres.</small>
+
         <mat-form-field class="input-form" appearance="fill">
-            <mat-label>Poder</mat-label>
-            <input matInput [(ngModel)]="heroe.power" name="heroePower" placeholder="Poder del heroe">
+            <mat-label>Poder<small *ngIf="herosForm.get('power')?.hasError('required')"> *</small></mat-label>
+            <input matInput formControlName="power" placeholder="Poder del heroe">
         </mat-form-field>
-        <button mat-raised-button color="primary">Guardar</button>
-        <button mat-raised-button (click)="discardChanges()">Cancelar</button>
+        <small class="error-message" *ngIf="herosForm.get('power')?.hasError('minlength')">El poder debe de tener al menos 3 caracteres.</small>
+
+        <button type="submit" class="form-buttons" mat-raised-button color="primary" (click)="onSubmit()">Guardar</button>
+        <button type="button" [routerLink]="['/heroes']" mat-raised-button>Cancelar</button>
     </form>
+
 </div>

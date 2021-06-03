@@ -3,6 +3,12 @@ body {
     font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
+form {
+    min-width: 150px;
+    max-width: 300px;
+    width: 100%;
+}
+
 table {
     width: 100%;
 }
@@ -13,6 +19,15 @@ th.mat-sort-header-sorted {
 
 .container {
     margin: 2rem 6rem;
+}
+
+.error-message {
+    color: red;
+    margin-bottom: 15rem !important;
+}
+
+.form-buttons {
+    margin-right: 1rem !important;
 }
 
 .header {
@@ -29,18 +44,11 @@ th.mat-sort-header-sorted {
     margin-top: 2rem;
 }
 
-.input-search-form {
-    width: 100%;
-}
-
 .input-form {
-    margin-right: 1rem;
+    width: 100%;
 }
 
 .search-form {
-    min-width: 150px;
-    max-width: 300px;
-    width: 100%;
     float: right;
 }
 
@@ -50,4 +58,21 @@ th.mat-sort-header-sorted {
 
 .table-option-edit {
     margin-right: 0.3rem !important;
+}
+
+.title-page-form {
+    margin-top: 1rem;
+}
+
+@media (max-width: 633px) {
+    .container {
+        margin: 2rem;
+    }
+    .search-form {
+        float: none;
+        margin-top: 1.5rem !important;
+    }
+    .table-option-edit {
+        margin-right: 0 !important;
+    }
 }

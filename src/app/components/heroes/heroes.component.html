@@ -1,17 +1,19 @@
 <div class="container">
     <h1>Listado de héroes</h1>
     <hr>
+
     <div class="header">
         <a [routerLink]="['/heroesForm']" mat-raised-button color="primary">
             <mat-icon>add</mat-icon><span class="material-icons-outlined"> Añadir</span>
         </a>
         <form class="search-form">
-            <mat-form-field class="input-search-form">
+            <mat-form-field class="input-form">
                 <mat-label>Nombre de héroe</mat-label>
-                <input matInput placeholder="Introduce el nombre de un héroe" name="heroNameFilter" [(ngModel)]="nameFilter" (input)="nameFilter = nameFilter.toUpperCase()" (ngModelChange)="searchByName()">
+                <input matInput placeholder="Introduce el nombre de un héroe" name="heroNameFilter" [(ngModel)]="nameFilter" (ngModelChange)="searchByName()" appUppercase>
             </mat-form-field>
         </form>
     </div>
+
     <div class="mat-elevation-z8 heroes-table">
         <table mat-table [dataSource]="dataSource" matSort>
             <!-- Id Column -->
