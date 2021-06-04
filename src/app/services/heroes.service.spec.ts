@@ -2,6 +2,8 @@ import { TestBed } from '@angular/core/testing';
 
 import { HeroesService } from './heroes.service';
 
+import HeroesJSON from './../../assets/heores.json';
+
 describe('HeroesService', () => {
   let service: HeroesService;
 
@@ -29,13 +31,24 @@ describe('HeroesService', () => {
     expect(service.getHeroesByNameFilter('am')).toEqual(heroes);
   });
 
+  it('Add hero should add the hero to the list', () => {
+    const herosLength = HeroesJSON.heroes;
+    const hero = {
+      id: 150,
+      name: 'Test',
+      power: 'test'
+    };
+    expect(service.addHero(hero)).toBeFalsy(herosLength);
+  });
+
   it('Edit hero should edit the hero by his id', () => {
     const hero = {
-      id: 1,
+      id: 2,
       name: 'Antii-Magee',
       power: 'AntiMage'
     };
-    expect(service.editHero(hero)).toBeFalsy(service.getHeroById(1));
+    service.editHero(hero);
+    expect(hero).toBeTruthy(service.getHeroById(2));
   });
 
   it('Delete hero by id should remove the hero with that id', () => {

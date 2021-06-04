@@ -49,13 +49,13 @@ export class HeroesService {
 
   /**
    * Añadir un heroe a la lista.
-   * Se le asigna el id que es el tamaño de la lista mas uno y se añade a la lista de heroes.
-   * En el caso de haber una API se usaria HttpClient para hacer la llamada post a la API.
-   * Al id se le suman 2 ya que la longitud de la lista empieza en 0 mientras que los ids en el JSON empiezan en 1.
+   * Mediante la función max de la clase Math que devuelve el mayor id del array de heroes y despues se le supa 1.
+   * En el caso de haber una API se usaria HttpClient para hacer la llamada post a la API y el id podria ser autogenerado.
    * @param hero heroe que se va a añadir a la lista.
    */
   public addHero(hero: Heroe) {
-    hero.id = HEROES.length + 2;
+    const maxID = Math.max.apply(Math, HEROES.map((heroe) =>  heroe.id ));
+    hero.id = maxID + 1;
     HEROES.push(hero);
   }
 
