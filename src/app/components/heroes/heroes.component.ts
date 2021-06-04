@@ -61,10 +61,10 @@ export class HeroesComponent implements OnInit, AfterViewInit {
    * de SweetAlert2, nos saldrá una ventana modal que nos preguntará si queremos eliminar el registro. En caso de darle
    * al botón de aceptar, se eliminará.
    */
-  removeHero(heroID: number) {
+  removeHero(heroID: number, nameHero: string) {
     // Mostrar modal de alerta cuando se va a borrar un registro.
     Swal.fire({
-      title: '¿Quieres eliminar este héroe?',
+      title: '¿Quieres eliminar al héroe ' + nameHero + ' ?',
       icon: 'warning',
       showCancelButton: true,
       confirmButtonText: 'Eliminar'

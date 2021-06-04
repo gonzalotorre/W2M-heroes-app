@@ -15,13 +15,15 @@ import { MatInputModule } from '@angular/material/input';
 import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
 import { MatIconModule } from '@angular/material/icon';
+import { UppercaseDirective } from '../directives/uppercase.directive';
 
 
 
 @NgModule({
   declarations: [
     HeroesComponent,
-    HeroesFormComponent
+    HeroesFormComponent,
+    UppercaseDirective
   ],
   imports: [
     AppRoutingModule,

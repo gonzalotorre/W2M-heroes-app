@@ -41,7 +41,7 @@
                     <a class="table-option-edit" [routerLink]="['/heroesForm', hero.id]" mat-icon-button color="primary" aria-label="Example icon button with a home icon">
                         <mat-icon>edit</mat-icon>
                     </a>
-                    <a type="button" mat-icon-button color="warn" aria-label="Example icon button with a home icon" (click)="removeHero(hero.id)">
+                    <a type="button" mat-icon-button color="warn" aria-label="Example icon button with a home icon" (click)="removeHero(hero.id, hero.name)">
                         <mat-icon>delete</mat-icon>
                     </a>
                 </td>
