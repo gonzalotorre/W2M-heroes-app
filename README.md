@@ -53,7 +53,7 @@ Desarrollar, utilizando Angular y Typescript, una aplicación SPA que permita ha
 
       • Comunicación entre componentes orientada a eventos.
 
-  **  Se valorará positivamente:**
+  **Se valorará positivamente:**
 
       • Cómo se construye el modelo de datos.
 
