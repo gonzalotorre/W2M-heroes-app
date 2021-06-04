@@ -72,7 +72,6 @@ export class HeroesComponent implements OnInit, AfterViewInit {
       if (result.isConfirmed) {
         // Eliminar el heroe y actualizar la lista.
         this.heroesService.removeHero(heroID);
-        // this.getHeroes();
         this.initializaTable();
       }
     });
