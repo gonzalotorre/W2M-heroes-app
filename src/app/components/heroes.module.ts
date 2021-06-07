@@ -1,5 +1,4 @@
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AppRoutingModule } from '../app-routing.module';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
@@ -16,6 +15,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
 import { MatIconModule } from '@angular/material/icon';
 import { UppercaseDirective } from '../directives/uppercase.directive';
+import { HeroesRoutingModule } from './heores-routing.module';
 
 
 
@@ -26,7 +26,7 @@ import { UppercaseDirective } from '../directives/uppercase.directive';
     UppercaseDirective
   ],
   imports: [
-    AppRoutingModule,
+    HeroesRoutingModule,
     CommonModule,
     MatTableModule,
     MatPaginatorModule,

@@ -1,9 +1,7 @@
-export class Heroe {
+export interface Heroe {
 
     id: number;
     name: string;
     power: string;
-
-    constructor() {}
 
 }

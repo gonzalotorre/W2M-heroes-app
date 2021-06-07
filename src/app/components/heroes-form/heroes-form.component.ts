@@ -13,7 +13,7 @@ export class HeroesFormComponent implements OnInit {
 
   heroesForm: FormGroup;
 
-  heroe: Heroe = new Heroe();
+  heroe: Heroe;
 
   heroeID: number;
 
@@ -31,7 +31,10 @@ export class HeroesFormComponent implements OnInit {
     this.getParamId();
     // Se comprueba si el id del heroe no es undefined para editar el heroe.
     if (this.heroeID) {
-      this.heroe = this.heroesService.getHeroById(this.heroeID);
+      const hero = this.heroesService.getHeroById(this.heroeID);
+      if (hero) {
+        this.heroe = hero;
+      }
       // Se carga el formulario con los valores del heroe a editar.
       this.loadForm();
     }

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Heroe } from '../model/heroe';
 import HeroesJSON from './../../assets/heores.json';
+import { Heroe } from 'src/app/model/heroe';
 
 /* Crear una lista con los heroes que se obtienen del JSON. Tambien se podrian obtener
  * mediante HttpCliente con una llamada get.
@@ -32,9 +32,8 @@ export class HeroesService {
    * @param heroID id del heroe que se quiere buscar.
    * @returns devuelve el heroe en caso de haberlo encontrado o undefined si no lo encuentra.
    */
-  public getHeroById(heroID: number): Heroe {
-    const hero = HEROES.find(heroe => heroe.id === heroID);
-    return (hero) ? hero : new Heroe();
+  public getHeroById(heroID: number): Heroe | undefined {
+    return HEROES.find(heroe => heroe.id === heroID);
   }
 
   /**

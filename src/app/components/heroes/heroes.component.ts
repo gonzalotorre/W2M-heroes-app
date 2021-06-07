@@ -3,8 +3,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { HeroesService } from '../../services/heroes.service';
-import { Heroe } from 'src/app/model/heroe';
 import Swal from 'sweetalert2';
+import { Heroe } from 'src/app/model/heroe';
 
 @Component({
   selector: 'app-heroes',
