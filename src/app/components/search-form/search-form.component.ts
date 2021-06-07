@@ -1,5 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { HeroesService } from '../../services/heroes.service';
+import { Heroe } from 'src/app/model/heroe';
 
 @Component({
   selector: 'app-search-form',
@@ -26,8 +27,23 @@ export class SearchFormComponent implements OnInit {
    */
    searchByName() {
     const heroes = this.heroesService.getHeroesByNameFilter(this.nameFilter);
-    // Reiniciar la tabla cada vez que se busque por una cadena determinada.
+    // Mediante el emitter podemos enviar los resultados de la búsqueda al componente padre.
     this.heroesEmitter.emit(heroes);
   }
+
+  /**
+   * Metodo que busca en la lista de heroes la cadena que se escriba en el input. Cuando se escribe se llama
+   * al evento ngModelChange para detectar cambios en el input, el onchange hace la llamada a este metodo el cual
+   * se encarga de llamar al metodo del servicio que busca los heroes con la cadena que se pasa por parametros.
+   * Para esto se usa la directiva ngModel del campo nameFilter definido en la clase.
+   */
+   searchByNameHttp() {
+    this.heroesService.getHeroesByNameFilterHttp(this.nameFilter).subscribe(
+      (resp: Heroe[]) => {
+        this.heroesEmitter.emit(resp);
+      }
+    );
+  }
+
 
 }

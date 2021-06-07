@@ -41,6 +41,16 @@ export class HeroesFormComponent implements OnInit {
   }
 
   /**
+   * Obtener el heroe en caso de que venga un id de heroe en la ruta. Mediante el subscribe de los observables
+   * podemos obtener la respuesta que nos devuelve la peticion http.
+   */
+   getHeroByIdHttp() {
+    this.heroesService.getHeroByIdHttp(this.heroeID).subscribe(
+      resp => this.heroe = resp
+    );
+  }
+
+  /**
    * Obtener el id del heroe en caso de que venga en la ruta. En el caso de que no venga devolverá NaN
    * debido a la conversión a numero.
    */

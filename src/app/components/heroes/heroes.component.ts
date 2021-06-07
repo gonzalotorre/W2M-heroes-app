@@ -21,8 +21,6 @@ export class HeroesComponent implements OnInit, AfterViewInit {
 
   heroes: Heroe[] = [];
 
-  nameFilter = '';
-
   constructor(
     public heroesService: HeroesService
   ) { }
@@ -50,8 +48,8 @@ export class HeroesComponent implements OnInit, AfterViewInit {
    */
    public getHeroesHttp() {
     this.heroesService.getHeroesHttp().subscribe(
-      (heroesJSON) => {
-        this.heroes = heroesJSON.heroes;
+      heroesJSON => {
+        this.heroes = heroesJSON;
         this.initializaTable();
       }
     );

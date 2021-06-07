@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Heroe } from 'src/app/model/heroe';
+import { map } from 'rxjs/operators';
 import HeroesJSON from './../../assets/heores.json';
 
 /* Crear una lista con los heroes que se obtienen del JSON. Tambien se podrian obtener
@@ -33,8 +34,8 @@ export class HeroesService {
    * se usa HttpClient para hacer la llamada get al JSON y devolver la lista con los heroes.
    * @returns una lista de heroes que en este caso provienen de un archivo JSON.
    */
-   public getHeroesHttp(): Observable<any> {
-    return this.http.get('./../../assets/heores.json');
+   public getHeroesHttp(): Observable<Heroe[]> {
+    return this.http.get<Heroe[]>('./../../assets/heores.json');
   }
 
   /**
@@ -50,6 +51,21 @@ export class HeroesService {
   }
 
   /**
+   * Obtener un heroe por id que se pasa por parametro.
+   * Mediante HttpClient podemos hacer una llamada a get para hacer obtener la lista de heroes y despues filtrarla por
+   * el id de heroe que se pasa por parametros. Usando el operador map de rxjs podemos añadirle el filtro por la cadena.
+   * @param heroID id del heroe que se quiere buscar.
+   * @returns devuelve el heroe en caso de haberlo encontrado o undefined si no lo encuentra.
+   */
+  public getHeroByIdHttp(heroID: number): Observable<Heroe> {
+    return this.http.get<Heroe>('./../../assets/heores.json').pipe(
+      map((resp: any) => {
+        return resp.heroes.find((hero: Heroe) => hero.id === heroID);
+      })
+    );
+  }
+
+  /**
    * Obtener un heroe por una cadena que se pasa por parametro.
    * En el caso de haber una API que hiciera esta funcionalidad se usaria HttpClient para hacer la llamada get a la API
    * y devolver una lista con los heroes que contengan la cadena que se pasa por parametro.
@@ -57,6 +73,20 @@ export class HeroesService {
    */
   public getHeroesByNameFilter(nameFilter: string): Heroe[] {
     return HEROES.filter(heroe => heroe.name.toUpperCase().includes(nameFilter.toUpperCase()));
+  }
+
+  /**
+   * Obtener un heroe por una cadena que se pasa por parametro.
+   * Mediante HttpClient podemos hacer una llamada get para obtener la lista de heroes y despues filtrar por la cadena
+   * que se pasa por parámetros. Usando el operador map de rxjs podemos añadirle el filtro por la cadena.
+   * @param nameFilter cadena que por la que se busca para obtener el heroe.
+   */
+   public getHeroesByNameFilterHttp(nameFilter: string): Observable<Heroe[]> {
+    return this.http.get<Heroe[]>('./../../assets/heores.json').pipe(
+      map((resp: any) => {
+        return resp.heroes.find((hero: Heroe) => hero.name.toUpperCase().includes(nameFilter.toUpperCase()));
+      })
+    );
   }
 
   /**
