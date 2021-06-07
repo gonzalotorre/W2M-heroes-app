@@ -36,12 +36,25 @@ export class HeroesComponent implements OnInit, AfterViewInit {
   }
 
   /**
-   * Obtener los heroes a traves del servicio.
+   * Obtener los heroes a traves del metodo get del servicio que devuelve la lista directamente desde el JSON.
    * Cuando se obtiene la respuesta, se asigna a la lista de heroes y se inicializa la tabla con ellos.
    */
   public getHeroes() {
     this.heroes = this.heroesService.getHeroes();
     this.initializaTable();
+  }
+
+  /**
+   * Obtener los heroes a traves del metodo get del servicio que usa el metodo get de HttpClient para trabajar con Observables.
+   * Cuando se obtiene la respuesta, se asigna a la lista de heroes y se inicializa la tabla con ellos.
+   */
+   public getHeroesHttp() {
+    this.heroesService.getHeroesHttp().subscribe(
+      (heroesJSON) => {
+        this.heroes = heroesJSON.heroes;
+        this.initializaTable();
+      }
+    );
   }
 
   /**

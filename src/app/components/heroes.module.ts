@@ -19,6 +19,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
 import { MatIconModule } from '@angular/material/icon';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -27,9 +28,10 @@ import { MatIconModule } from '@angular/material/icon';
     HeroesComponent,
     HeroesFormComponent,
     UppercaseDirective,
-    SearchFormComponent
+    SearchFormComponent,
   ],
   imports: [
+    HttpClientModule,
     HeroesRoutingModule,
     CommonModule,
     MatTableModule,

@@ -1,6 +1,8 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import HeroesJSON from './../../assets/heores.json';
+import { Observable } from 'rxjs';
 import { Heroe } from 'src/app/model/heroe';
+import HeroesJSON from './../../assets/heores.json';
 
 /* Crear una lista con los heroes que se obtienen del JSON. Tambien se podrian obtener
  * mediante HttpCliente con una llamada get.
@@ -12,7 +14,9 @@ const HEROES: Heroe[] = HeroesJSON.heroes;
 })
 export class HeroesService {
 
-  constructor() { }
+  constructor(
+    private http: HttpClient
+  ) { }
 
   /**
    * Devuelve todos los heroes de la lista. Esta lista se obtiene de un archivo JSON.
@@ -22,6 +26,15 @@ export class HeroesService {
    */
   public getHeroes(): Heroe[] {
     return HEROES;
+  }
+
+  /**
+   * Devuelve todos los heroes de la lista. Esta lista se obtiene de un archivo JSON. En este ejemplo
+   * se usa HttpClient para hacer la llamada get al JSON y devolver la lista con los heroes.
+   * @returns una lista de heroes que en este caso provienen de un archivo JSON.
+   */
+   public getHeroesHttp(): Observable<any> {
+    return this.http.get('./../../assets/heores.json');
   }
 
   /**
