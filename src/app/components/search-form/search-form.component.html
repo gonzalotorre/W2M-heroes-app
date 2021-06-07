@@ -1,0 +1,6 @@
+<form class="search-form">
+    <mat-form-field class="input-form">
+        <mat-label>Nombre de héroe</mat-label>
+        <input matInput placeholder="Introduce el nombre de un héroe" name="heroNameFilter" [(ngModel)]="nameFilter" (ngModelChange)="searchByName()" appUppercase>
+    </mat-form-field>
+</form>

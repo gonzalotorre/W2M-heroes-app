@@ -6,12 +6,13 @@
         <a [routerLink]="['/heroesForm']" mat-raised-button color="primary">
             <mat-icon>add</mat-icon><span class="material-icons-outlined"> Añadir</span>
         </a>
-        <form class="search-form">
+        <app-search-form (heroesEmitter)="searchByName($event)"></app-search-form>
+        <!-- <form class="search-form">
             <mat-form-field class="input-form">
                 <mat-label>Nombre de héroe</mat-label>
                 <input matInput placeholder="Introduce el nombre de un héroe" name="heroNameFilter" [(ngModel)]="nameFilter" (ngModelChange)="searchByName()" appUppercase>
             </mat-form-field>
-        </form>
+        </form> -->
     </div>
 
     <div class="mat-elevation-z8 heroes-table">

@@ -1,10 +1,15 @@
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { HeroesRoutingModule } from './heores-routing.module';
 
 // Components
 import { HeroesFormComponent } from './heroes-form/heroes-form.component';
 import { HeroesComponent } from './heroes/heroes.component';
+import { SearchFormComponent } from './search-form/search-form.component';
+
+// Directivas
+import { UppercaseDirective } from '../directives/uppercase.directive';
 
 // Angular Material
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -14,8 +19,6 @@ import { MatInputModule } from '@angular/material/input';
 import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
 import { MatIconModule } from '@angular/material/icon';
-import { UppercaseDirective } from '../directives/uppercase.directive';
-import { HeroesRoutingModule } from './heores-routing.module';
 
 
 
@@ -23,7 +26,8 @@ import { HeroesRoutingModule } from './heores-routing.module';
   declarations: [
     HeroesComponent,
     HeroesFormComponent,
-    UppercaseDirective
+    UppercaseDirective,
+    SearchFormComponent
   ],
   imports: [
     HeroesRoutingModule,
